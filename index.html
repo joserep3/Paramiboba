@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín? ❤️</title>
+
+    <!-- Fuente elegante para estilo de carta -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Dancing Script', cursive;
+            background: linear-gradient(to right, #ff6f61, #ffb3b3);
+            color: white;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Título */
+        h1 {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+            margin-bottom: 40px;
+            animation: fadeIn 2s ease-out;
+        }
+
+        /* Animación de entrada */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Botones */
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            animation: fadeInButtons 2s ease-out;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.4rem;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: transform 0.3s ease, background-color 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background-color: #ff4d4d;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Estilos para el marco de corazones */
+        .heart-frame {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 5px solid #ff1a1a;
+            border-radius: 25px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        /* Animación de pulsación de corazón */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+            }
+            100% {
+                transform: scale(1.05);
+                box-shadow: 0 0 60px rgba(255, 0, 0, 0.7);
+            }
+        }
+
+        /* Corazones animados */
+        .heart {
+            position: absolute;
+            font-size: 3rem;
+            color: #ff1a1a;
+            animation: heartAnimation 2s infinite ease-in-out;
+        }
+
+        /* Animación de corazones flotantes */
+        @keyframes heartAnimation {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50px, -50px);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translate(50px, 50px);
+                opacity: 0;
+            }
+        }
+
+        /* Animación de besos */
+        .kiss {
+            position: absolute;
+            font-size: 2.5rem;
+            animation: kissAnimation 2s infinite ease-in-out;
+        }
+
+        /* Animación de besos flotantes */
+        @keyframes kissAnimation {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(100px, -100px);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translate(200px, 200px);
+                opacity: 0;
+            }
+        }
+
+        /* Nueva interfaz con frases de amor */
+        .love-message {
+            display: none;
+            font-size: 1.8rem;
+            color: #ff4d4d;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .love-message p {
+            font-size: 2rem;
+            margin: 10px;
+            animation: fadeInMessage 1.5s ease-out;
+        }
+
+        /* Animación de mensajes de amor */
+        @keyframes fadeInMessage {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Ocultar los botones después de hacer clic */
+        .hidden {
+            display: none;
+        }
+
+        /* Ocultar el título después de hacer clic */
+        .hiddenTitle {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Marco de corazones -->
+    <div class="heart-frame">
+        <h1 id="title">¿Quieres ser mi San Valentín? ❤️</h1>
+
+        <div class="buttons">
+            <button id="yes" onclick="responseYes()">Sí, mi taradito ❤️</button>
+            <button id="no" onclick="responseNo()">No, te odio 😡</button> <!-- Aquí solo cambiamos el emoji -->
+        </div>
+
+        <div class="message" id="responseMessage"></div>
+    </div>
+
+    <!-- Corazones flotantes -->
+    <div class="heart" style="top: 10%; left: 10%;">❤️</div>
+    <div class="heart" style="top: 50%; right: 10%;">❤️</div>
+    <div class="heart" style="bottom: 10%; left: 50%;">❤️</div>
+    <div class="heart" style="top: 30%; left: 60%;">❤️</div>
+
+    <!-- Besos flotantes -->
+    <div class="kiss" style="top: 20%; left: 30%;">💋</div>
+    <div class="kiss" style="top: 40%; left: 70%;">💋</div>
+    <div class="kiss" style="top: 60%; left: 50%;">💋</div>
+    <div class="kiss" style="top: 80%; left: 10%;">💋</div>
+
+    <!-- Nueva interfaz con frases de amor -->
+    <div class="love-message" id="loveMessage">
+        <p>Te quiero más de lo que las palabras pueden expresar. ❤️</p>
+        <p>Mi vida es mejor con cada segundo que paso a tu lado. 💖</p>
+        <p>Siempre estaré aquí para ti, hoy y siempre. 💕</p>
+        <p>Te amo más de lo que puedes imaginar. 💘</p>
+    </div>
+
+    <script>
+        let noButton = document.getElementById("no");
+        let title = document.getElementById("title");
+        let phrases = [
+            "No, te odio 😡", 
+            "No, nunca seré tu San Valentín", 
+            "Entiende que no", 
+            "Antes muerta", 
+            "Eres lo peor del mundo"
+        ];
+        let counter = 0;
+
+        function responseYes() {
+            // Ocultar los botones
+            let buttons = document.querySelector(".buttons");
+            buttons.classList.add("hidden");
+
+            // Ocultar el título
+            title.classList.add("hiddenTitle");
+
+            // Mostrar la nueva interfaz con frases de amor
+            let loveMessage = document.getElementById("loveMessage");
+            loveMessage.style.display = "block";
+        }
+
+        function responseNo() {
+            // Cambiar el texto del botón cada vez que se presiona
+            if (counter < phrases.length) {
+                noButton.textContent = phrases[counter];
+                counter++;
+            } else {
+                noButton.textContent = "No, te odio 😡"; // Regresa al texto inicial
+                counter = 0; // Reinicia el contador
+            }
+        }
+    </script>
+
+</body>
+</html>
